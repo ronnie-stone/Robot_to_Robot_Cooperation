@@ -13,14 +13,6 @@ def update_mobile(x_robot, y_robot, path, i, speed=0.1):
 	x_center = x_robot[0] + 0.5
 	y_center = y_robot[0] + 0.5
 
-	# idx = distance.cdist([(x_center, y_center)], path).argmin()
-
-	# dx = path[0][1] - path[0][0]
-	
-	#slope = (path[idx+1][1] - path[idx][1])/dx
-
-	#x_new = 
-
 	return path[i][0], path[i][1], np.pi
 
 def interpolate():
@@ -29,7 +21,6 @@ def interpolate():
 	yp = np.array([1.5, 2, 8])
 
 	params = np.polyfit(xp, yp, deg=2)
-
 
 	return params
 
@@ -82,6 +73,8 @@ if __name__ == "__main__":
 
 	path = np.array(list(zip(x_path, y_path)))
 
+	print(path)
+
 	def update_plot(i, x_robot, y_robot):
 
 		r = 0.5
@@ -117,8 +110,6 @@ if __name__ == "__main__":
 		# Update mobile robot:
 
 		dx, dy, theta = update_mobile(x_robot, y_robot, path, i)
-
-		# print(dx, dy)
 
 		ax.add_patch(plt.Rectangle((dx - 0.5, dy - 0.5), 1, 1, edgecolor = "black", facecolor = "red", zorder=1))
 

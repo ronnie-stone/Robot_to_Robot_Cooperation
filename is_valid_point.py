@@ -10,10 +10,10 @@ def is_valid_point(obstacles, point):
 
 	for obs in obstacles:
 
-		n_points_polygon = len(obs)
+		n_points_polygon = len(obs) - 1
 		n_intersections = 0
 
-		for i in range(n_points_polygon-1):
+		for i in range(n_points_polygon):
 
 			point_A = (obs[i][0], obs[i][1])
 			point_B = (obs[i+1][0], obs[i+1][1])
@@ -36,9 +36,19 @@ def is_valid_point(obstacles, point):
 
 if __name__ == "__main__":
 
-	# Function testing
+	# Function testing.
 
-	obstacles = [[(1,2), (0,1), (1,0), (3,1), (2,1), (2,2)]]
+	# Note that the points that define the obstacle must be ordered counter-clockwise.
+	# Also note that the initial and final points are the same and must be included.
+
+	random_polygon = [(1,2), (0,1), (1,0), (3,1), (2,1), (2,2), (1,2)] 
+	square = [(3,3), (3,4), (4,4), (4,3), (3,3)]
+	hourglass = [(1,3), (2,3), (1.6, 4), (2,5), (1,5), (1.4,4), (1,3)]
+	hexagon = [(3.5, 1), (3.75, 0), (4.75, 0), (5,1), (4.75, 2), (3.75, 2), (3.5,1)]
+
+	obstacles = [random_polygon, square, hourglass, hexagon]
+
+	# Plot obstacles.
 
 	fig, ax = plt.subplots(1,1)
 
@@ -46,7 +56,7 @@ if __name__ == "__main__":
 
 		i = 0
 
-		while i < len(obs)-1:
+		while i < len(obs)-2:
 
 			plt.plot([obs[i][0], obs[i+1][0]], [obs[i][1], obs[i+1][1]], color="b")
 			i += 1
